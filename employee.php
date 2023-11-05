@@ -24,13 +24,14 @@ require('config\config.php');
 require('config\db.php');
 
 // create query
-$query = 'SELECT employees.lastname, employees.firstname, employees.address, office.name as office_name FROM employees, office WHERE employees.office_id = office.id';
+$query = 'SELECT employees.lastname, employees.firstname, employees.address, office.name as office_name 
+        FROM employees, office WHERE employees.office_id = office.id ORDER BY employees.lastname';
 
 // get the result
 $result = mysqli_query($conn, $query);
 
-// fetch the data
-$offices = mysqli_fetch_all($result, MYSQLI_ASSOC);
+// fetch the data 
+$employees = mysqli_fetch_all($result, MYSQLI_ASSOC);
 
 // free result 
 mysqli_free_result($result);
@@ -58,6 +59,12 @@ mysqli_close($conn);
                     <div class="row">
                     <div class="col-md-12">
                             <div class="card strpied-tabled-with-hover">
+                            <br/>
+                                <div class='col-md-12'>
+                                    <a href="employee-add.php">
+                                        <button type="submit" class="btn btn-info btn-fill pull-right">Add New Employee</button>
+                                    </a>
+                                </div>
                                 <div class="card-header ">
                                     <h4 class="card-title">Employee</h4>
                                     <p class="card-category">Here is a subtitle for this table</p>
@@ -72,12 +79,12 @@ mysqli_close($conn);
                                           
                                         </thead>
                                         <tbody>
-                                            <?php foreach($offices as $office) : ?>
+                                            <?php foreach($employees as $employee) : ?>
                                             <tr>
-                                                <td><?php echo $office['lastname']; ?></td>
-                                                <td><?php echo $office['firstname']; ?></td>
-                                                <td><?php echo $office['address']; ?></td>
-                                                <td><?php echo $office['office_name']; ?></td>
+                                                <td><?php echo $employee['lastname']; ?></td>
+                                                <td><?php echo $employee['firstname']; ?></td>
+                                                <td><?php echo $employee['address']; ?></td>
+                                                <td><?php echo $employee['office_name']; ?></td>
                                        
                                             </tr>
                                             <?php endforeach ?>
