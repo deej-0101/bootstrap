@@ -23,9 +23,31 @@
 require('config\config.php');
 require('config\db.php');
 
+// define the total number of results you want per page
+$results_per_page = 20;
+
+// find the total number of results/rows stored in the database
+$query = 'SELECT * FROM employees';
+$result = mysqli_query($conn, $query);
+$number_of_result = mysqli_num_rows($result);
+
+// determine the total number of pages available 
+$number_of_page = ceil($number_of_result / $results_per_page);
+
+// determine which page number visitor is currently on
+if(!isset($_GET['page'])){
+    $page = 1;
+}else{
+    $page = $_GET['page'];
+}
+
+// determine the sql limiy starting number for the results on the display page
+$page_first_result = ($page-1) * $results_per_page;
+
+
 // create query
 $query = 'SELECT employees.lastname, employees.firstname, employees.address, office.name as office_name 
-        FROM employees, office WHERE employees.office_id = office.id ORDER BY employees.lastname';
+        FROM employees, office WHERE employees.office_id = office.id ORDER BY employees.lastname LIMIT ' . $page_first_result . ',' . $results_per_page;
 
 // get the result
 $result = mysqli_query($conn, $query);
@@ -97,6 +119,11 @@ mysqli_close($conn);
                         </div>
                     </div>
                 </div>
+                <?php 
+                    for($page=1; $page <= $number_of_page; $page++){
+                        echo '<a href = "employee.php?page=' . $page .'">' . $page . ' ' . '</a>';
+                    }
+                ?>
                 </div>
             </div>
             <footer class="footer">
