@@ -100,6 +100,7 @@ mysqli_close($conn);
                                             <th>City</th>
                                             <th>Country</th>
                                             <th>Postal</th>
+                                            <th>Action</th>
                                         </thead>
                                         <tbody>
                                             <?php foreach($offices as $office) : ?>
@@ -111,6 +112,11 @@ mysqli_close($conn);
                                                 <td><?php echo $office['city']; ?></td>
                                                 <td><?php echo $office['country']; ?></td>
                                                 <td><?php echo $office['postal']; ?></td>
+                                                <td>    
+                                                    <a href="office-edit.php?id=<?php echo $office['id']; ?>">
+                                                    <button type="submit" class="btn btn-warning btn-fill pull-right">Edit</button>
+                                                    </a>
+                                                </td>
                                             </tr>
                                             <?php endforeach ?>
                                             
