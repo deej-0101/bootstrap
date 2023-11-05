@@ -62,7 +62,7 @@ mysqli_close($conn);
                     <div class="col-md-12">
                             <div class="card strpied-tabled-with-hover">
                                 <div class="card-header ">
-                                    <h4 class="card-title">Employee</h4>
+                                    <h4 class="card-title">Transactions</h4>
                                     <p class="card-category">Here is a subtitle for this table</p>
                                 </div>
                                 <div class="card-body table-full-width table-responsive">
