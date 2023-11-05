@@ -122,10 +122,10 @@
                                                     <input type="text" class="form-control" name="postal">
                                                 </div>
                                             </div>
-                                           
+                                
                                         </div>
                                        
-                                        <button type="submit" name="submit" class="btn btn-info btn-fill pull-right">Save</button>
+                                        <button type="submit" name="submit" value="Submit" class="btn btn-info btn-fill pull-right">Save</button>
                                         <div class="clearfix"></div>
                                     </form>
                                 </div>
