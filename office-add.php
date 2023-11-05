@@ -36,7 +36,7 @@
                     <div class="section">
                     </div>
                     <div class="row">
-                        <div class="col-md-8">
+                        <div class="col-md-12">
                             <div class="card">
                                 <div class="card-header">
                                     <h4 class="card-title">Edit Profile</h4>
@@ -44,6 +44,7 @@
                                 <div class="card-body">
                                     <form>
                                         <div class="row">
+                                       
                                             <div class="col-md-5 pr-1">
                                                 <div class="form-group">
                                                     <label>Company (disabled)</label>
@@ -118,8 +119,9 @@
                                     </form>
                                 </div>
                             </div>
+                           
                         </div>
-                        <div class="col-md-4">
+                        <!-- <div class="col-md-4">
                             <div class="card card-user">
                                 <div class="card-image">
                                     <img src="https://ununsplash.imgix.net/photo-1431578500526-4d9613015464?fit=crop&fm=jpg&h=300&q=75&w=400" alt="...">
@@ -153,7 +155,7 @@
                                     </button>
                                 </div>
                             </div>
-                        </div>
+                        </div> -->
                     </div>
                 </div>
             </div>
