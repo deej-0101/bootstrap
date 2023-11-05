@@ -24,13 +24,16 @@ require('config\config.php');
 require('config\db.php');
 
 // create query
-$query = 'SELECT * FROM office ORDER BY name';
+$query = 'SELECT transaction.date_log, transaction.documentcode, transaction.action, office.name as office_name, 
+CONCAT(employees.lastname, ", ", employees.firstname) as employee_fullname, transaction.remarks
+FROM recordsapp.employees, recordsapp.office, recordsapp.transaction
+WHERE transaction.employee_id=employees.id and transaction.office_id=office.id';
 
 // get the result
 $result = mysqli_query($conn, $query);
 
 // fetch the data
-$offices = mysqli_fetch_all($result, MYSQLI_ASSOC);
+$transactions = mysqli_fetch_all($result, MYSQLI_ASSOC);
 
 // free result 
 mysqli_free_result($result);
@@ -59,30 +62,30 @@ mysqli_close($conn);
                     <div class="col-md-12">
                             <div class="card strpied-tabled-with-hover">
                                 <div class="card-header ">
-                                    <h4 class="card-title">Striped Table with Hover</h4>
+                                    <h4 class="card-title">Employee</h4>
                                     <p class="card-category">Here is a subtitle for this table</p>
                                 </div>
                                 <div class="card-body table-full-width table-responsive">
                                     <table class="table table-hover table-striped">
                                         <thead>
-                                            <th>Name</th>
-                                            <th>Contact Number</th>
-                                            <th>Email</th>
-                                            <th>Address</th>
-                                            <th>City</th>
-                                            <th>Country</th>
-                                            <th>Postal</th>
+                                            <th>Datelog</th>
+                                            <th>Document Code</th>
+                                            <th>Action</th>
+                                            <th>Office</th>
+                                            <th>Employee</th>
+                                            <th>Remarks</th>
+                                          
                                         </thead>
                                         <tbody>
-                                            <?php foreach($offices as $office) : ?>
+                                            <?php foreach($transactions as $transaction) : ?>
                                             <tr>
-                                                <td><?php echo $office['name']; ?></td>
-                                                <td><?php echo $office['contactnum']; ?></td>
-                                                <td><?php echo $office['email']; ?></td>
-                                                <td><?php echo $office['address']; ?></td>
-                                                <td><?php echo $office['city']; ?></td>
-                                                <td><?php echo $office['country']; ?></td>
-                                                <td><?php echo $office['postal']; ?></td>
+                                                <td><?php echo $transaction['date_log']; ?></td>
+                                                <td><?php echo $transaction['documentcode']; ?></td>
+                                                <td><?php echo $transaction['action']; ?></td>
+                                                <td><?php echo $transaction['office_name']; ?></td>
+                                                <td><?php echo $transaction['employee_fullname']; ?></td>
+                                                <td><?php echo $transaction['remarks']; ?></td>
+                                       
                                             </tr>
                                             <?php endforeach ?>
                                             
