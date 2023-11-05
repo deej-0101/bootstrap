@@ -24,13 +24,41 @@
          
             <div class="sidebar-wrapper">
                 <?php include("includes/sidebar.php"); ?>
-       
+      
             </div>
         </div>
         <div class="main-panel">
             <!-- Navbar -->
-            <?php include("includes/navbar.php"); ?>
-           
+            <?php include("includes/navbar.php"); ?> 
+
+<?php
+    require('config/config.php');
+    require('config/db.php');
+
+    // check if submitted
+    if(isset($_POST['submit'])){
+        // get form data
+        $name = mysqli_real_escape_string($conn, $_POST['name']);
+        $contactnum = mysqli_real_escape_string($conn, $_POST['contactnum']);
+        $email = mysqli_real_escape_string($conn, $_POST['email']);
+        $address = mysqli_real_escape_string($conn, $_POST['address']);
+        $city = mysqli_real_escape_string($conn, $_POST['city']);
+        $country = mysqli_real_escape_string($conn, $_POST['country']);
+        $postal = mysqli_real_escape_string($conn, $_POST['postal']);
+    
+ 
+    // create insert query
+    $query = "INSERT INTO office(name, contactnum, email, address, city, country, postal)
+            VALUES('$name', '$contactnum', '$email', '$address', '$city', '$country', '$postal')";
+
+    // execute query
+    if(mysqli_query($conn, $query)){
+      
+    }else{
+        echo 'ERROR: ' . mysqli_error($conn);
+    }
+}
+?> 
             <div class="content">
                 <div class="container-fluid">
                     <div class="section">
@@ -97,7 +125,7 @@
                                            
                                         </div>
                                        
-                                        <button type="submit" class="btn btn-info btn-fill pull-right">Save</button>
+                                        <button type="submit" name="submit" class="btn btn-info btn-fill pull-right">Save</button>
                                         <div class="clearfix"></div>
                                     </form>
                                 </div>
