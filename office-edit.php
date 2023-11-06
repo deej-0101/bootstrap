@@ -32,7 +32,9 @@
     // get result of query
     $result = mysqli_query($conn, $query);
 
-    if(count($result)==1){
+    $num_result = mysqli_num_rows($result);
+
+    if($num_result==1){
         // fetch data
         $office = mysqli_fetch_array($result);
         $name = $office['name'];
@@ -80,8 +82,8 @@
     
  
     // create insert query
-    $query = "UPDATE office SET name='$name', contactnum='$contactnum', email='$email', address='$address', city='$city', country='$country', postal='$postal')
-            WHERE id= " . $id;
+    $query = "UPDATE office SET name='$name', contactnum='$contactnum', email='$email', address='$address', city='$city', country='$country', postal='$postal'
+            WHERE id=" . $id;
 
     // execute query
     if(mysqli_query($conn, $query)){

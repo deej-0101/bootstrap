@@ -32,7 +32,7 @@
     // get result of query
     $result = mysqli_query($conn, $query);
 
-    if(count($result) == 1){  //error on this part
+    if(mysqli_num_rows($result)==1){  //error on this part
         // fetch data
         $employees = mysqli_fetch_array($result);
         $lastname = $employees['lastname'];
@@ -76,8 +76,8 @@
     
  
     // create insert query
-    $query = "INSERT INTO employees(lastname, firstname, office_id, address)
-            VALUES('$lastname', '$firstname', '$office_id', '$address')";
+    $query = "UPDATE employees SET lastname='$lastname', firstname='$firstname', office_id='$office_id', address='$address'
+             WHERE id=" . $id;  
 
     // execute query
     if(mysqli_query($conn, $query)){
