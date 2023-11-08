@@ -27,7 +27,7 @@ require('config\db.php');
 $search = $_GET['search'];
 
 // define the total number of results you want per page
-$results_per_page = 10;
+$results_per_page = 20;
 
 // find the total number of results/rows stored in the database
 $query = 'SELECT * FROM transaction';
@@ -50,14 +50,14 @@ $page_first_result = ($page-1) * $results_per_page;
 // create query
 if (strlen($search) > 0){
     $query = 'SELECT transaction.date_log, transaction.documentcode, transaction.action, office.name as office_name, 
-        CONCAT(employees.lastname, ", ", employees.firstname) as employee_fullname, transaction.remarks
-        FROM recordsapp.employees, recordsapp.office, recordsapp.transaction
-        WHERE transaction.employee_id=employees.id and transaction.office_id=office.id and transaction.documentcode =' . $search . ' ORDER BY transaction.documentcode, transaction.date_log LIMIT ' . $page_first_result . ',' . $results_per_page;
+        CONCAT(employee.lastname, ", ", employee.firstname) as employee_fullname, transaction.remarks
+        FROM records_app.employee, records_app.office, records_app.transaction
+        WHERE transaction.employee_id=employee.id and transaction.office_id=office.id and transaction.documentcode= ' . $search . ' ORDER BY transaction.documentcode, transaction.date_log LIMIT ' . $page_first_result . ',' . $results_per_page;
 }else{
     $query = 'SELECT transaction.date_log, transaction.documentcode, transaction.action, office.name as office_name, 
-        CONCAT(employees.lastname, ", ", employees.firstname) as employee_fullname, transaction.remarks
-        FROM recordsapp.employees, recordsapp.office, recordsapp.transaction
-        WHERE transaction.employee_id=employees.id and transaction.office_id=office.id ORDER BY transaction.documentcode, transaction.date_log LIMIT ' . $page_first_result . ',' . $results_per_page;
+        CONCAT(employee.lastname, ", ", employee.firstname) as employee_fullname, transaction.remarks
+        FROM records_app.employee, records_app.office, records_app.transaction
+        WHERE transaction.employee_id=employee.id and transaction.office_id=office.id ORDER BY transaction.documentcode, transaction.date_log LIMIT ' . $page_first_result . ',' . $results_per_page;
 }
 
 
@@ -97,7 +97,7 @@ mysqli_close($conn);
                             <div class='col-md-12'>
                                     <form action="transaction.php" method="GET">
                                         <input type="text" name="search" />
-                                        <input type="submit" value="Search" class="btn btn-info btn-fill" />
+                                        <input type="submit" value="search" class="btn btn-info btn-fill" />
                                     </form>
                                 </div>
                                 <div class='col-md-12'>

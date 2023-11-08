@@ -46,7 +46,7 @@
     
  
     // create insert query
-    $query = "INSERT INTO employees(lastname, firstname, office_id, address)
+    $query = "INSERT INTO employee(lastname, firstname, office_id, address)
             VALUES('$lastname', '$firstname', '$office_id', '$address')";
 
     // execute query

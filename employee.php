@@ -27,7 +27,7 @@ require('config\db.php');
 $results_per_page = 20;
 
 // find the total number of results/rows stored in the database
-$query = 'SELECT * FROM employees';
+$query = 'SELECT * FROM employee';
 $result = mysqli_query($conn, $query);
 $number_of_result = mysqli_num_rows($result);
 
@@ -46,8 +46,8 @@ $page_first_result = ($page-1) * $results_per_page;
 
 
 // create query
-$query = 'SELECT employees.id, employees.lastname, employees.firstname, employees.address, office.name as office_name 
-        FROM employees, office WHERE employees.office_id = office.id ORDER BY employees.lastname LIMIT ' . $page_first_result . ',' . $results_per_page;
+$query = 'SELECT employee.id, employee.lastname, employee.firstname, employee.address, office.name as office_name 
+        FROM employee, office WHERE employee.office_id = office.id ORDER BY employee.lastname LIMIT ' . $page_first_result . ',' . $results_per_page;
 
 // get the result
 $result = mysqli_query($conn, $query);

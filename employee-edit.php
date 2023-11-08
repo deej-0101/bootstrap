@@ -27,7 +27,7 @@
     $id = $_GET['id'];
 
     // create query
-    $query = "SELECT * FROM employees WHERE id=" . $id;
+    $query = "SELECT * FROM employee WHERE id=" . $id;
 
     // get result of query
     $result = mysqli_query($conn, $query);
@@ -76,7 +76,7 @@
     
  
     // create insert query
-    $query = "UPDATE employees SET lastname='$lastname', firstname='$firstname', office_id='$office_id', address='$address'
+    $query = "UPDATE employee SET lastname='$lastname', firstname='$firstname', office_id='$office_id', address='$address'
              WHERE id=" . $id;  
 
     // execute query
