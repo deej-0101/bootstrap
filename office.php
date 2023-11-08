@@ -44,7 +44,6 @@ if(!isset($_GET['page'])){
 // determine the sql limiy starting number for the results on the display page
 $page_first_result = ($page-1) * $results_per_page;
 
-
 // create query
 $query = 'SELECT * FROM office ORDER BY name LIMIT ' . $page_first_result . ',' . $results_per_page;
 
