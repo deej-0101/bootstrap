@@ -20,6 +20,8 @@
 
 <body>
 <?php
+
+
     require('config/config.php');
     require('config/db.php');
 
@@ -31,6 +33,8 @@
 
     // get result of query
     $result = mysqli_query($conn, $query);
+
+    // mysqli_fetch_all
 
     if(mysqli_num_rows($result)==1){  //error on this part
         // fetch data
@@ -62,7 +66,7 @@
             <?php include("includes/navbar.php"); ?> 
 
 <?php
-    require('config/config.php');
+    
     require('config/db.php');
 
     // check if submitted

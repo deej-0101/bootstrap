@@ -66,7 +66,7 @@
             <?php include("includes/navbar.php"); ?> 
 
 <?php
-    require('config/config.php');
+    
     require('config/db.php');
 
     // check if submitted
